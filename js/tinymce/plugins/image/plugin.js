@@ -254,7 +254,6 @@ tinymce.PluginManager.add('image', function(editor) {
 			css['margin-top'] = css['margin-bottom'] = addPixelSuffix(data.vspace);
 			css['margin-left'] = css['margin-right'] = addPixelSuffix(data.hspace);
 			css['border-width'] = addPixelSuffix(data.border);
-			css.float =  data.cssFloat;
 
 			win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
 		}
@@ -265,7 +264,6 @@ tinymce.PluginManager.add('image', function(editor) {
 				data.hspace = removePixelSuffix(imgElm.style.marginLeft || imgElm.style.marginRight);
 				data.vspace = removePixelSuffix(imgElm.style.marginTop || imgElm.style.marginBottom);
 				data.border = removePixelSuffix(imgElm.style.borderWidth);
-				data.cssFloat = imgElm.style.float;
 				data.style = editor.dom.serializeStyle(editor.dom.parseStyle(editor.dom.getAttrib(imgElm, 'style')));
 			}
 
@@ -300,25 +298,15 @@ tinymce.PluginManager.add('image', function(editor) {
 								alignH: ['left', 'right'],
 								defaults: {
 									type: 'textbox',
-									maxWidth: 65,
+									maxWidth: 50,
 									onchange: updateStyle
 								},
 								items: [
 									{label: 'Vertical space', name: 'vspace'},
 									{label: 'Horizontal space', name: 'hspace'},
-									{label: 'Border', name: 'border'},
-									{label: 'Float', name: 'cssFloat', type: 'listbox',
-										values: [
-											{text: 'None', value: ''},
-											{text: 'Left', value: 'left'},
-											{text: 'Right', value: 'right'}
-										],
-										onselect: updateStyle
-									}
+									{label: 'Border', name: 'border'}
 								]
-							},
-
-
+							}
 						]
 					}
 				],
